@@ -1,0 +1,49 @@
+export const CICLE_STATES = Object.freeze({
+  POMODORO: 'POMODORO',
+  SHORT_BREAK: 'SHORT_BREAK',
+  LONG_BREAK: 'LONG_BREAK',
+});
+
+
+export const BLOCKS_TIME = Object.freeze({
+  MINUTES_60: 3_600_000,
+  MINUTES_55: 3_300_000,
+  MINUTES_50: 3_000_000,
+  MINUTES_45: 2_700_000,
+  MINUTES_40: 2_400_000,
+  MINUTES_35: 2_100_000,
+  MINUTES_30: 1_800_000,
+  MINUTES_25: 1_500_000,
+  MINUTES_20: 1_200_000,
+  MINUTES_15: 900_000,
+  MINUTES_10: 600_000,
+  MINUTES_5: 300_000,
+  MINUTES_1: 10000,
+});
+
+export const CICLE = [
+  {
+    state: CICLE_STATES.POMODORO,
+    time: BLOCKS_TIME.MINUTES_25,
+  },
+  {
+    state: CICLE_STATES.SHORT_BREAK,
+    time: BLOCKS_TIME.MINUTES_5,
+  },
+  {
+    state: CICLE_STATES.POMODORO,
+    time: BLOCKS_TIME.MINUTES_25,
+  },
+  {
+    state: CICLE_STATES.SHORT_BREAK,
+    time: BLOCKS_TIME.MINUTES_5,
+  },
+  {
+    state: CICLE_STATES.POMODORO,
+    time: BLOCKS_TIME.MINUTES_25,
+  },
+  {
+    state: CICLE_STATES.LONG_BREAK,
+    time: BLOCKS_TIME.MINUTES_15,
+  },
+];
