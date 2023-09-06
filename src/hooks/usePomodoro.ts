@@ -9,15 +9,20 @@ export function usePomodoro() {
     );
 
   const [cicle, setCicle] = context;
+
   const updateCicle = ({ state, time }: CiclePos) => {
-    const updatedCicle: CiclePos[] = [
-      ...cicle,
-      {
-        state,
-        time,
-      },
-    ];
+    const updatedCicle: CiclePos[] = cicle.map((currentPosition) => {
+      if (currentPosition.state === state) {
+        return {
+          state,
+          time,
+        };
+      } else {
+        return currentPosition;
+      }
+    });
     setCicle(updatedCicle);
   };
+
   return { cicle, updateCicle };
 }
