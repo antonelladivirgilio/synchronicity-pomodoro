@@ -1,30 +1,23 @@
-import { createContext, useState, Dispatch, SetStateAction, ReactNode } from 'react'
-import { CICLE } from '../constants'
+import { ReactNode, createContext, useState, useContext } from "react";
+import { CICLE } from "../constants";
+import { CiclePos } from "../types";
 
-type CiclePos = {
-    state: 'POMODORO' | 'SHORT_BREAK' | 'LONG_BREAK'
-    time: number
-}
+export const usePomodoros = (initial: CiclePos[]) =>
+  useState<CiclePos[]>(initial);
+export type UsePomodoroType = ReturnType<typeof usePomodoros>;
+export type PomodoroType = UsePomodoroType[0];
+export type SetPomodoroType = UsePomodoroType[1];
 
-type PomodoroContextType = {
-    cicle: CiclePos[] | null,
-    setCicle: Dispatch<SetStateAction<CiclePos[] | null>>
-}
+export const PomodoroContext = createContext<UsePomodoroType | null>(null);
 
-export const PomodoroContext = createContext<PomodoroContextType | null>(null)
+export const usePomodoroContext = () => useContext(PomodoroContext)!;
 
-type PomodoroProviderProps = {
-    children: ReactNode | ReactNode[]
-}
+export const PomodoroProvider = ({ children }: { children: ReactNode }) => {
+  const initialState: CiclePos[] = [...CICLE];
 
-export const PomodoroProvider = ({children}: PomodoroProviderProps) => {    
-
-    const initialCicle: CiclePos[] = [...CICLE]
-    const [cicle, setCicle] = useState<CiclePos[] | null>(initialCicle)
-
-    return(
-        <PomodoroContext.Provider value={{cicle, setCicle}}>
-            {children}
-        </PomodoroContext.Provider>
-    )
-}
+  return (
+    <PomodoroContext.Provider value={usePomodoros(initialState)}>
+      {children}
+    </PomodoroContext.Provider>
+  );
+};
