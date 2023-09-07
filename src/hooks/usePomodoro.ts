@@ -1,7 +1,10 @@
 import { usePomodoroContext } from "../contexts/pomodoroContext";
 import { CiclePos } from "../types";
 
-export function usePomodoro() {
+export function usePomodoro(): {
+  cicle: CiclePos[];
+  updateCicle: ({ cicle }: { cicle: CiclePos[] }) => void;
+} {
   const context = usePomodoroContext();
   if (context === undefined)
     throw new Error(
@@ -10,18 +13,18 @@ export function usePomodoro() {
 
   const [cicle, setCicle] = context;
 
-  const updateCicle = ({ state, time }: CiclePos) => {
-    const updatedCicle: CiclePos[] = cicle.map((currentPosition) => {
-      if (currentPosition.state === state) {
-        return {
-          state,
-          time,
-        };
-      } else {
-        return currentPosition;
-      }
-    });
-    setCicle(updatedCicle);
+  const updateCicle = ({ cicle }: { cicle: CiclePos[] }) => {
+    // const updatedCicle: CiclePos[] = cicle.map((currentPosition) => {
+    //   if (currentPosition.state === state) {
+    //     return {
+    //       state,
+    //       time,
+    //     };
+    //   } else {
+    //     return currentPosition;
+    //   }
+    // });
+    setCicle(cicle);
   };
 
   return { cicle, updateCicle };
