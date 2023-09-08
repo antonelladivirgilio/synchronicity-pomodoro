@@ -9,3 +9,7 @@ export function millisecondsToMinutes(milliseconds: number): string {
 
   return formattedTime;
 }
+
+export function minutesToMilliseconds(minutes: number): number {
+  return minutes * 60 * 1000;
+}
