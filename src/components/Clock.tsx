@@ -1,13 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { usePomodoro } from "../hooks/usePomodoro";
-import { millisecondsToMinutes } from "../utils/millisecondsToMinutes";
+import {
+  millisecondsToMinutes,
+  minutesToMilliseconds,
+} from "../utils/millisecondsToMinutes";
 
 export function Clock() {
   const { cicle } = usePomodoro();
   const cicleCounter = useRef(0);
 
   const currentCicle = cicle[cicleCounter.current]?.state;
-  const initialTime = cicle[cicleCounter.current]?.time;
+  const initialTime = minutesToMilliseconds(cicle[cicleCounter.current]?.time); // minutos
 
   const [time, setTime] = useState(initialTime);
   const [focusing, setFocusing] = useState(false);
@@ -43,6 +46,13 @@ export function Clock() {
 
     return () => clearInterval(updateTime);
   });
+
+  useEffect(() => {
+    const initialTime = minutesToMilliseconds(
+      cicle[cicleCounter.current]?.time
+    );
+    setTime(initialTime);
+  }, [cicle]);
 
   return (
     <>
