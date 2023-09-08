@@ -44,7 +44,7 @@ export function FormConfiguration() {
         id={`pomodoro-${inputId}`}
         onChange={handleSelectChange}
         name={CICLE_STATES.POMODORO}
-        defaultValue={5}
+        defaultValue={BLOCKS_TIME.MINUTES_25}
       />
 
       <label htmlFor={`short-break-${inputId}`}>Short break</label>
@@ -53,7 +53,7 @@ export function FormConfiguration() {
         id={`short-break-${inputId}`}
         onChange={handleSelectChange}
         name={CICLE_STATES.SHORT_BREAK}
-        defaultValue={2}
+        defaultValue={BLOCKS_TIME.MINUTES_5}
       />
 
       <label htmlFor={`long-break-${inputId}`}>Long break</label>
@@ -62,7 +62,7 @@ export function FormConfiguration() {
         id={`long-break-${inputId}`}
         onChange={handleSelectChange}
         name={CICLE_STATES.LONG_BREAK}
-        defaultValue={2}
+        defaultValue={BLOCKS_TIME.MINUTES_15}
       />
 
       <button>Guardar cambios</button>
