@@ -8,6 +8,7 @@ import {
 export function Clock() {
   const { cicle } = usePomodoro();
   const cicleCounter = useRef(0);
+  const timerRef = useRef<NodeJS.Timeout>();
 
   const currentCicle = cicle[cicleCounter.current]?.state;
   const initialTime = minutesToMilliseconds(cicle[cicleCounter.current]?.time); // minutos
@@ -26,6 +27,8 @@ export function Clock() {
   };
 
   useEffect(() => {
+    timerRef.current && clearInterval(timerRef.current);
+
     if (time === 0) {
       cicleCounter.current += 1;
 
@@ -34,18 +37,15 @@ export function Clock() {
         return;
       }
 
-      setTime(cicle[cicleCounter.current].time);
-      return;
+      setTime(minutesToMilliseconds(cicle[cicleCounter.current].time));
     }
 
-    const updateTime = setInterval(() => {
+    timerRef.current = setInterval(() => {
       if (!focusing) return;
 
       setTime((prev) => prev - 1000);
     }, 1000);
-
-    return () => clearInterval(updateTime);
-  });
+  }, [focusing, time]);
 
   useEffect(() => {
     const initialTime = minutesToMilliseconds(
