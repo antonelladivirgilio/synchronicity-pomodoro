@@ -1,8 +1,14 @@
-import React, { useId, useState } from "react";
+import React, { useId, useState, useRef } from "react";
 import { BLOCKS_TIME, CICLE_STATES } from "../constants";
 import { type CiclePos } from "../types";
 import { usePomodoro } from "../hooks/usePomodoro";
 import { Select } from "./Select";
+
+type defaultValuesType = {
+  pomodoro: number;
+  shortBreak: number;
+  longBreak: number;
+};
 
 export function FormConfiguration() {
   const inputId = useId();
@@ -10,6 +16,13 @@ export function FormConfiguration() {
 
   const { cicle, updateCicle } = usePomodoro();
   const [timers, setTimers] = useState<CiclePos[]>(cicle);
+
+  const initialValues: defaultValuesType = {
+    pomodoro: cicle[0].time,
+    shortBreak: cicle[1].time,
+    longBreak: cicle[cicle.length - 1].time,
+  };
+  const defaultValues = useRef(initialValues);
 
   const handleSelectChange = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -44,7 +57,7 @@ export function FormConfiguration() {
         id={`pomodoro-${inputId}`}
         onChange={handleSelectChange}
         name={CICLE_STATES.POMODORO}
-        defaultValue={BLOCKS_TIME.MINUTES_25}
+        defaultValue={defaultValues.current.pomodoro}
       />
 
       <label htmlFor={`short-break-${inputId}`}>Short break</label>
@@ -53,7 +66,7 @@ export function FormConfiguration() {
         id={`short-break-${inputId}`}
         onChange={handleSelectChange}
         name={CICLE_STATES.SHORT_BREAK}
-        defaultValue={BLOCKS_TIME.MINUTES_5}
+        defaultValue={defaultValues.current.shortBreak}
       />
 
       <label htmlFor={`long-break-${inputId}`}>Long break</label>
@@ -62,7 +75,7 @@ export function FormConfiguration() {
         id={`long-break-${inputId}`}
         onChange={handleSelectChange}
         name={CICLE_STATES.LONG_BREAK}
-        defaultValue={BLOCKS_TIME.MINUTES_15}
+        defaultValue={defaultValues.current.longBreak}
       />
 
       <button>Guardar cambios</button>
