@@ -12,7 +12,7 @@ export function Timer({ stop }: TimerProps) {
   useEffect(() => {
     const interval = setInterval(() => {
       if (stop) return
-      updateTime(time + 1)
+      updateTime(time + 1000)
     }, 1000)
 
     return () => clearInterval(interval)
@@ -20,7 +20,7 @@ export function Timer({ stop }: TimerProps) {
 
   return (
     <>
-      <h1 className="text-center text-7xl self-end">{time}</h1>
+      <h1 className="text-center text-7xl self-end mb-16">{time}</h1>
     </>
   )
 }
