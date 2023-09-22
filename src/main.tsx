@@ -1,12 +1,12 @@
-import { PomodoroProvider } from "./contexts/pomodoroContext";
-import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
-import "./index.css";
+import ReactDOM from 'react-dom/client'
+import App from './App.tsx'
+import './index.css'
+import { TimerProvider } from './contexts/timerContext'
 
-ReactDOM.createRoot(document.getElementById("root")!, {
-  identifierPrefix: "app-pomodoro-",
+ReactDOM.createRoot(document.getElementById('root')!, {
+  identifierPrefix: 'app-pomodoro-'
 }).render(
-  <PomodoroProvider>
+  <TimerProvider>
     <App />
-  </PomodoroProvider>
-);
+  </TimerProvider>
+)

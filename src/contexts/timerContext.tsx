@@ -1,7 +1,6 @@
 import { ReactNode, createContext, useState } from 'react'
 
 const useTimer = (initialTime: number) => useState(initialTime)
-
 type UseTimerType = ReturnType<typeof useTimer>
 
 export const TimerContext = createContext<UseTimerType | null>(null)
