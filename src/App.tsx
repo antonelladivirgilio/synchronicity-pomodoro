@@ -1,28 +1,16 @@
-import { useState } from "react";
-import { Button } from "./components/Button";
-import { Modal } from "./components/Modal";
-import { Clock } from "./components/Clock";
-import { FormConfiguration } from "./components/FormConfiguration";
-import "./App.css";
+import { useState } from 'react'
+import { Timer } from './components/Timer'
+import './App.css'
 
 function App() {
-  const [openModal, setOpenModal] = useState<boolean>(true);
-
-  const handleToggleModal = () => {
-    setOpenModal(!openModal);
-  };
+  const [stop, setStop] = useState(false)
 
   return (
-    <>
-      <Button onClick={handleToggleModal} text="Abrir modal"></Button>
-
-      <Clock></Clock>
-
-      <Modal title="Configuración" openModal={openModal}>
-        <FormConfiguration></FormConfiguration>
-      </Modal>
-    </>
-  );
+    <div className="min-h-screen bg-blue-400">
+      <h1>Timer</h1>
+      <Timer stop={stop} setStop={setStop} />
+    </div>
+  )
 }
 
-export default App;
+export default App
