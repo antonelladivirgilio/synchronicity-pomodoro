@@ -18,6 +18,7 @@ module.exports = {
     ],
   },
   globals: {
-    'NodeJS': true
+    'NodeJS': true,
+    'JSX': true,
   },
 }
