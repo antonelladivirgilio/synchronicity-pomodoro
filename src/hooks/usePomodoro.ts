@@ -1,5 +1,5 @@
 import { usePomodoroContext } from "../contexts/pomodoroContext";
-import { CiclePos } from "../types";
+import { type CiclePos } from "../types";
 
 export function usePomodoro(): {
   cicle: CiclePos[];
