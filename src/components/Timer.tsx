@@ -1,11 +1,7 @@
-import { Dispatch, SetStateAction, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useTimer } from '../hooks/useTimer'
 import { millisecondsToMinutes } from '../utils/millisecondsToMinutes'
-
-type TimerProps = {
-  stop: boolean
-  setStop: Dispatch<SetStateAction<boolean>>
-}
+import { type TimerProps } from '../types'
 
 export function Timer({ stop }: TimerProps) {
   const { time, updateTime } = useTimer()

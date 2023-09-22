@@ -1,11 +1,6 @@
-import { Dispatch, SetStateAction } from 'react'
 import { Button } from './Button'
 import { useTimer } from '../hooks/useTimer'
-
-type TimerProps = {
-  stop: boolean
-  setStop: Dispatch<SetStateAction<boolean>>
-}
+import { type TimerProps } from '../types'
 
 export function Controls({ stop, setStop }: TimerProps) {
   const { updateTime } = useTimer()
