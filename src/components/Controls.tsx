@@ -9,30 +9,31 @@ type TimerProps = {
 
 export function Controls({ stop, setStop }: TimerProps) {
   const { updateTime } = useTimer()
-  const handleStopTimer = () => {
+  const handleStop = () => {
     setStop(!stop)
   }
 
-  const handleToggleModal = () => {
+  const handleConfig = () => {
     console.log('open modal')
   }
 
-  const handleResetTimer = () => {
+  const handleReset = () => {
     updateTime(0)
+    setStop(!stop)
   }
 
   return (
     <div className="flex items-start gap-6">
       <Button
-        onClick={handleStopTimer}
+        onClick={handleStop}
         icon={stop ? 'play' : 'pause'}
         ariaLabel={stop ? 'start timer' : 'stop timer'}
       ></Button>
 
-      <Button onClick={handleResetTimer} icon="stop" ariaLabel="reset"></Button>
+      <Button onClick={handleReset} icon="stop" ariaLabel="reset"></Button>
 
       <Button
-        onClick={handleToggleModal}
+        onClick={handleConfig}
         icon="config"
         ariaLabel="configuration"
       ></Button>

@@ -4,7 +4,7 @@ import './App.css'
 import { Controls } from './components/Controls'
 
 function App() {
-  const [stop, setStop] = useState(false)
+  const [stop, setStop] = useState(true)
 
   return (
     <main className="grid justify-center min-h-screen bg-red-200">
