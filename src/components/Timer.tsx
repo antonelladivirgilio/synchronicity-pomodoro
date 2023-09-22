@@ -1,12 +1,12 @@
-import { useEffect, SetStateAction, Dispatch } from 'react'
+import { Dispatch, SetStateAction, useEffect } from 'react'
 import { useTimer } from '../hooks/useTimer'
 
-type Props = {
+type TimerProps = {
   stop: boolean
   setStop: Dispatch<SetStateAction<boolean>>
 }
 
-export function Timer({ stop, setStop }: Props) {
+export function Timer({ stop }: TimerProps) {
   const { time, updateTime } = useTimer()
 
   useEffect(() => {
@@ -18,14 +18,9 @@ export function Timer({ stop, setStop }: Props) {
     return () => clearInterval(interval)
   }, [time, stop])
 
-  const handleStopTimer = () => {
-    setStop(!stop)
-  }
-
   return (
     <>
-      {time}
-      <button onClick={handleStopTimer}>{stop ? 'Start' : 'Stop'}</button>
+      <h1 className="text-center text-7xl self-end">{time}</h1>
     </>
   )
 }

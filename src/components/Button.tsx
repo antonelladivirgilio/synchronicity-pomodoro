@@ -1,19 +1,31 @@
-type ButtonProps = {
-  onClick: () => void;
-  text?: string;
-  ariaLabel?: string;
-  children?: JSX.Element;
-};
+import { Cog8ToothIcon } from '@heroicons/react/20/solid'
+import { PlayIcon, StopIcon, PauseIcon } from '@heroicons/react/24/solid'
 
-export function Button({ onClick, text, ariaLabel, children }: ButtonProps) {
+type ButtonProps = {
+  onClick: () => void
+  text?: string
+  ariaLabel?: string
+  icon?: 'play' | 'stop' | 'pause' | 'config'
+}
+
+export function Button({ onClick, icon, text, ariaLabel }: ButtonProps) {
+  const iconButton = {
+    play: <PlayIcon />,
+    stop: <StopIcon />,
+    pause: <PauseIcon />,
+    config: <Cog8ToothIcon />
+  }
+
   return (
     <button
       onClick={onClick}
       aria-label={ariaLabel}
-      className="rounded-md bg-lime-600 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-50"
+      className={`${icon} rounded-md grid grid-flow-col bg-blue-600 place-items-center`}
     >
-      {text && text}
-      {children && children}
+      {icon && (
+        <span className="h-6 w-6 text-white m-2">{iconButton[icon]}</span>
+      )}
+      {text && <span className="text-white mr-4">{text}</span>}
     </button>
-  );
+  )
 }
