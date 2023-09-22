@@ -49,7 +49,7 @@ export function FormConfiguration() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="grid">
       <label htmlFor={`pomodoro-${inputId}`}>Pomodoro</label>
 
       <Select
@@ -78,7 +78,9 @@ export function FormConfiguration() {
         defaultValue={defaultValues.current.longBreak}
       />
 
-      <button>Guardar cambios</button>
+      <button className="rounded-md bg-lime-600 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-50">
+        Guardar cambios
+      </button>
     </form>
   );
 }
