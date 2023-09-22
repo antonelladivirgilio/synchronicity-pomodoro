@@ -20,7 +20,7 @@ export function Controls({ stop, setStop }: TimerProps) {
       <Button
         onClick={handleStopTimer}
         icon={stop ? 'play' : 'stop'}
-        ariaLabel={stop ? 'Start timer' : 'Stop timer'}
+        ariaLabel={stop ? 'start timer' : 'stop timer'}
       ></Button>
 
       <Button
