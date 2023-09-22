@@ -1,15 +1,17 @@
 import { useState } from 'react'
 import { Timer } from './components/Timer'
 import './App.css'
+import { Controls } from './components/Controls'
 
 function App() {
   const [stop, setStop] = useState(false)
 
   return (
-    <div className="min-h-screen bg-blue-400">
-      <h1>Timer</h1>
+    <main className="grid justify-center min-h-screen bg-red-200">
       <Timer stop={stop} setStop={setStop} />
-    </div>
+
+      <Controls stop={stop} setStop={setStop} />
+    </main>
   )
 }
 
